@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+
+  <head>
+	<meta charset = "utf-8"> 
+    <meta name="viewport" content="width=device-width">
+    <title>RIX</title>
+    <link rel = "stylesheet" href="rix.css">
+  </head>
+  <body>
+
+    <article id="what" typeof="schema:ScholarlyArticle" resource="#">
+      <h1>Resource Interactive eXplorer</h1>
+      <section>
+        <ol>
+          <li property="schema:author">
+            <a property="schema:author">
+              <span property="schema:givenName">Crețu</span>
+              <span property="schema:familyName">Ana</span>
+          </li>
+          <li property="schema:contributor">
+            <a property="schema:contributor">
+              <span property="schema:givenName">Gușă</span>
+              <span property="schema:familyName">Diana</span>
+            </a>
+          </li>
+		  <li property="schema:contributor">
+            <a property="schema:contributor">
+              <span property="schema:givenName">Iacob</span>
+              <span property="schema:familyName">Mădălina</span>
+            </a>
+          </li>
+		  <li property="schema:contributor">
+            <a property="schema:contributor">
+              <span property="schema:givenName">Lingurariu</span>
+              <span property="schema:familyName">Geogiana</span>
+            </a>
+          </li>		  
+        </ol>
+      </section>
+
+      <section>
+      	<h2>Introducere</h2>
+      		<p>
+      			Numele aplicatiei ce urmeaza sa o dezvoltam este Resource Interactive eXplorer, ce urmareste a fi un instrument Web de colectare, de regasire si de vizualizare a informatiilor referitoare la resurse stiintifice si/sau tehnologice (articole, carti, rapoarte tehnice, prezentari, cod-sursa si altele) ale utilizatorilor din domeniul informaticii.
+      		</p>
+      		<p> Dezvoltand o aplicatie de tip mash-up, se vor oferi informatii de interes pentru o anumita persoana, pornind de la 		resursele multimedia deja colectate si clasificate (eventual, prin tagging) via aplicatii Web sociale precum Feedly, 	GitHub, Google Scholar, Lynrd, Pocket, Slideshare, Vimeo etc. Informatiile (structurate pe diverse criterii) vor fi 	vizualizate/redate in formate precum HTML, SVG sau text obisnuit. De asemenea, sistemul va oferi acces la informatii 	prin intermediul unui API REST.
+      		</p>
+      </section>
+
+      <section>
+      	<h2>Prezentare generala a aplicatiei</h2>
+      		<p>
+      			Aplicatia va fi usor de utilizat deoarece functionalitatile sale de baza vor permite utilizatorilor sa aiba acces la informatii utile si personalizate. Interfata propusa se doreste a fi atat atractiva, cat si discreta, pentru ca focusul utilizatorului sa fie mentinut pe continut. 
+      		</p>
+          <p>
+            Prima pagina a aplicatiei va permite oricarui utilizator sa vizualizeze stirile oferite de API-urile alese, insa fara posibilitatea de a le filtra. Pentru a putea vizualiza doar stiri din subdomeniile preferate, un utilizator va trebui sa isi creeze un cont. In momentul creerii contului, utilizatorul va putea sa isi aleaga doar acele subdomenii de care este interesat. 
+          </p>
+          <p>
+            Atunci cand este inregistrat, un utilizator isi va putea modifica preferintele in legatura cu subdomeniile preferate. De asemenea, va putea mentine o arhiva a stirilor preferate, apasand butonul de "Like" aflat sub fiecare stire.
+          </p>
+      </section>
+
+      <section>
+        <h2>Prezentarea interfetei aplicatiei</h2>
+        <p>Prima pagina a aplicatie contine meniul format din logo, referinta catre sectiunea "About Us", referinta catre sectiunea "Contact" si un buton de logare. Daca un utlizator nu are cont, acesta poate accesa Login-ul si va declansa deschiderea modalului de logare, dupa care va apasa butonul de "Sign up" si va declansa deschiderea celui de al doilea modal, format din 2 pasi: primul pas este pentru completarea datelor personale, iar al doilea pentru selectarea subdomeniilor de care este interesat si despre care doreste sa vizualizeze stiri.</p>
+        <p>Dupa logarea cu succes, utilizatorul va fi directionat pe o pagina unde va avea acces la informatii personalizate. Meniul acestei pagini contine in plus sectiunea "My Favorites", ce permite accesarea a doua butoane: "My Prefered News", ce va directiona utilizatorul spre o pagina unde va putea vizualiza stirile preferate (acele stiri la care a accesat "Like") si "Add New Preferences" ce va declansa deschiderea unui modal ce ii va permite sa isi modifice subdomeniile preferate.
+        </p>
+        <p>In plus fata de prima pagina a aplicatiei, exista si un field "Search" pentru cautarea anumitor stiri.
+        </p>
+        <p>Daca un utilizator doreste sa acceseze o stire din cele prezentate pe aceasta pagina, acesta va fi directionat pe o pagina ce va contine stirea in intregime.
+        </p>
+      </section>
+	  <section>
+		<h2>Arhitectura aplicatiei</h2><br>
+		<img src="diagrama.png" alt="diagram">
+	  </section>
+
+	  <section>
+		<p>
+		In aplicatia noastra, vom folosi pentru implementare, framework-ul Laravel. Am ales acest framework deoarece ne ofera o documentatie oficiala foarte bogata si cel mai important, deoarece 
+		ne permite sa implementam aplicatia dupa modelul arhitectural MVC.
+		Laravel are numeroase functionalitati care-l transforma intr-un framework extrem de puternic:
+		<ul>
+			<li>Are Facades(clase ale caror metode pot fi apelate ca si metode statice, ex: Route::get(), 
+			Input::get(), Input::all() si multe altele).</li>
+			<li>Are ORM(Object Relational Mapping), deci poti transforma $articole = DB::table('articole')->get(); 
+			in $articole = Articol::all();. 
+			Un ORM ofera numeroase functionalitati ce-ti confera un control imens asupra aplicatiei.</li>
+		</ul>	
+		</p>
+	  </section>
+	  
+      <section typeof="sa:MaterialsAndMethods" id="motivation">
+        <h2>Etapele intermediare ale dezvoltării proiectului</h2>
+          <p>
+			API (Application Program Interface) este un set de protocoale și instrumente pentru crearea de aplicații software.
+			Un API specifică modul în care componentele software ar trebui să interacționeze, astfel un API bun ne ajută să dezvoltăm mai ușor aplicația prin furnizarea altor elemente software.
+			Trebuie sã cunoaștem adresa URL a furnizorului de servicii și metodele prin care avem acces la serviciul oferit (nume, parametri, rezultat). Interfața API este limitatã la câteva operații în cazul serviciilor de tip  REST.
+          </p>
+
+          <p>
+            In implementarea aplicatiei vom utiliza un API oferit de Embedly pentru a converti URL-uri in clipuri video, imagini sau articole ce provin de pe diverse site-uri. Embed ne permite sa incorporam cu usurinta in aplicatia noastra continut de pe Youtube, Vimeo, Vine, Flickr prin intermendiul API-ului oEmbed, sa extragem continut prin API-ul Extract, sa afisam continut prin Display API, iar prin Video API putem incarca si reda fisierele video. 
+            <ul>
+              <li>
+                <i>oEmbed</i>
+              </li>
+              URL:  <a href="https://api.embedly.com/1/oembed">https://api.embedly.com/1/oembed</a>. Acest API este utilizat pentru incorporarea de continut de la orice adresa URL.Foloseste metoda GET.
+              <li>
+                <i>Extract</i> 
+              </li>
+              URL:  <a href ="https://api.embedly.com/1/extract">https://api.embedly.com/1/extract</a>. Ne permite sa extragem articole si sa preluam mai multe metadate despre acestea.
+              Foloseste metoda GET.
+              <li>
+                <i>Display</i>
+              </li>
+              URL:  <a href = "https://i.embed.ly/1/display">https://i.embed.ly/1/display</a>. 
+              Este un proxy care ne perminte sa incorporam imagini nesigure in pagini securizate, fara avertisment si foloseste o imagine alternativa pentru imaginile care nu au fost gasite. 
+              Foloseste metoda GET. 
+              <li>
+                <i>Video</i>
+              </li>
+              URL:  <a href = "https://upload.embed.ly/1/video">https://upload.embed.ly/1/video</a>. 
+              Utilizand acest API recurgem la o modalitate rapida si scalabila pentru a incarca si reda fisierele video din aplicatia noastra. Acesta foloseste metoda POST.
+          </ul>
+        </p>
+
+		  
+		<p>
+			Pentru a colecta informații disponibile pe SlideShare vom utiliza următoarele metode API:
+		<ul>
+          <li>
+           <i> Get SlideShare Infomation </i>
+          </li>
+				URL:  <a href = "https://www.slideshare.net/api/2/get_slideshow">https://www.slideshare.net/api/2/get_slideshow</a>. Acesta este utilizat pentru a obtine informatii despre prezentari.
+				<br><b>Parametri necesari</b><br>
+				-slideshow_id: id-ul prezentarii care va fi preluata <br>
+				-slideshow_url: URL prezentarii care va fi preluata. Acesta este necesar daca slideshow_id nu este setata. Daca amebele sunt setate, slideshow_id are prioritate.
+				</p>
+          <li>
+            <i> Get Slideshows By Tag </i>
+          </li>
+				URL:  <a href = "https://www.slideshare.net/api/2/get_slideshows_by_tag">https://www.slideshare.net/api/2/get_slideshows_by_tag</a>. 
+				Acesta este utilizat pentru a obtine prezentari pe baza tag-urilor.
+				<br><b>Parametri necesari</b> <br>
+				-tag: Parametru ce specifica numele tag-ului prezentarii respective.
+          <li>
+            <i> Get Slideshows By User </i>
+          </li>
+				URL:  <a href = "https://www.slideshare.net/api/2/get_slideshows_by_user">https://www.slideshare.net/api/2/get_slideshows_by_user</a>. 
+				Acesta este utilizat pentru a obtine prezentari pe baza user-ilor.
+				<br><b>Parametri necesari</b> <br>
+				-username_for: Reprezinta numele utilizatorului care este proprietarul respectivei prezentari.
+		SlideShare permite incarcarea a cel mult 100 de prezentari pe zi.Deasemenea, in cadrul proiectului vor fi tratate diferitele erori aruncate de API-uri (ex. No API Key Provided, Tag Not Found).
+		</p> <br>
+		</ul>
+		
+		<p>
+		Pentru a colecta informații disponibile pe Pocket trebuie sa obtinem autorizatie de la serverul Pocket facand un POST request.<br>
+		Vom folosi metoda URL:  <a href = "https://getpocket.com/v3/oauth/request">https://getpocket.com/v3/oauth/request/</a><br>
+		<b>Parametri</b> <br>			
+			-consumer_key:  Este un string ce reprezinta cheia oferita pentru aplicatia noastra<br>
+			-redirect_uri: Un string	 ce reprezinta un URL care va fi apelat cand procesul de autorizare este complet. Acest URL ar trebuie sa ne directioneze inapoi la aplicatia nostra<br>
+			-state: Parametru optional. Este un string de metadate utilizate de aplicatia noastra.
+		</p>
+		<p>
+		In aplicatia noastra vom include si unele API-uri oferite de Youtube pentru incarcarea unor clipuri video, a comentariilor aferentele acestora precum si pentru a gestiona un play-list.
+		<br>
+		Vom face o cerere HTTP, apeland GET la URL-ul  <a href="https://www.googleapis.com/youtube/v3/videos">https://www.googleapis.com/youtube/v3/videos</a>
+		<br>
+		<b>Parametri necesari</b><br>
+		-part: Este un string ce reprezinta o lista cu proprietatile resursei video, separate prin virgula. 
+		<br>
+		-chart: Acest parametru identifica diagrama pe care dorim sa o preluam
+		<br>
+		-id: Un parametru de tip string ce reprezinta lista id-urilor videoclipurilor de pe Youtube pentru resursele pe care dorim sa le preluam.
+		<br>
+		-myRating: Acesta poate fi utilizat doar intr-o cerere autorizata. Poate fi setat cu valorile like sau dislike, astfel API-ul returneaza clipurile in functie de aceasta valoare.	
+			
+		</p>
+		  </p>
+      </section>
+
+     <section>
+     <p> Pentru stocarea datelor in cadrul aplicatiei vom folosi ca suport sistemul de gestiune MySQL incorporate in cadrul aplicatiei phpMyAdmin. Acest sistem de gestiune contine extensia MySQLi, ce impreuna cu PHP 5, ofera o serie de functii ce ajuta la accesarea facila bazelor de date. </p>
+     <p>Baza de date va stoca date precum: datele de inregistrare a administratorilor, ale utilizatorilor aplicatiei si date optionale, alese de utilizatori la inregistrarea in aplicatie. Aceste date vor fi retinute intr-o tabela <i>USERS</i>, ce va contine campuri precum : id ( cheie unica asignat automat fiecarui utilizator), nume, email si parola ( date ce sunt completate de utilizator la inregistrarea in aplicatie). De asemenea, intr-o alta tabela <i>Domenii</i> vor fi retinute preferintele care pot fi alese de fiecare utilizator la inregistrarea in aplicatie. Aceasta a doua tabela va retine numele domeniilor impreuna cu id-ul utilizatorului care l-a ales(cheie straina din tabela Users) . Astfel un utilizator isi va putea accesa cu usurinta lista cu preferinte alese si va mai putea adauga si altele.</p>
+
+     <img src="bd.png" alt="bd-diagram">
+
+     <p>Pentru a stabili conexiunea cu baza de date si de a executa instructiune precum INSERT, UPDATE, DELETE, SELECT, MySQLi ofera comezi precum:</p>
+     <ul>
+     <li>mysqli_connect("localhost",”nume_utilizator”,”parola”,”nume_BD”) - stabileste conexiunea cu baza de date, unde numele de utilizator si parola sunt datele de conectare in aplicatia phpMyAdmin, iar numele bazei de data reprezinta numele dat directorului in care se gasesc tabelele pentru aplicatia noastra.</li>
+     <li>mysqli_connect_errno() - verifica daca conexiunea s-a realizat cu succes, in caz contrar va expune eroarea intalnita cu ajutorul functiei mysqli_connect_error()</li>
+     <li>mysqli_query($conn, $sql) - va executa interogarea <i>$sql</i> daca conexiunea <i>$conn</i> a fost stabilita cu succes     </li>
+     <li>mysqli_num_rows($result) - va verifica daca interogarea a returnat cel putin un rand. In caz afirmativ, pentru autetificare, numele si parola vor fi validate si utilizatorului i se va permite accesul pe pagina profilului sau. In caz contrar, daca nici un rand nu a fost returnat, inseamna ca numele si parola introduse nu au fost gasite in baza de date si utilizatorului i se va cere reintroducerea datelor. De asemenea, exista posibilitatea ca interogarea sa nu poata fi executata, caz in care, va fi returnata o eroare cu ajutorul functiei mysqli_error($conn).</li>
+     <li>mysqli_close($conn) - va inchide conexiunea cu baza de date atunci cand toate interogarile dorite au fost executate</li>
+     </ul>
+     <p>Pentru a preveni SQL Injection, inainte de a folosi datele introduse de catre utilizatori, le vom filtra si verifica daca sunt de tipul corect sau daca contin caractere diferite de cele ce trebuie introduse. Vom folosi functii precum: </p>
+     <ul>
+     <li>$data=trim($data) - sterge spatiile dinaintea si dupa sirul de caractere introdus</li>
+     <li> $data = stripslashes($data) - sterge caracterele '\'</li>
+     <li> $data = htmlspecialchars($data) </li>
+     <li> preg_match("/^[a-zA-Z ]*$/",$data) - filtreaza date precum username-ul sau parola</li> 
+     <li>filter_var($email, FILTER_VALIDATE_EMAIL) - filtreaza email-ul</li>
+    </ul>
+
+    <p>O alta modalitate de a preveni SQL Injection este accea de a da drepturi cat mai putin utilizatorilor aplicatiei asupra bazei de date. Conexiunea cu baza de date nu se face ca si superuser, ci ca un utilizator ce are doar drepturile ce ii permit vizualizarea si inserarea. Totodata, aplicatia nu permite afisarea de date specifice a bazei de date si foloseste un sistem de raportare a erorilor care este ascunsa de utilizatorul obisnuit.</p>
+      </section>
+
+
+
+      <section>
+        <h2>Membrii echipei</h2>
+        <p><a>Cretu Ana</a> se va ocupa de partea de baze de date.</p>
+        <p><a>Gusa Diana</a> si <a>Iacob Madalina</a> se vor ocupa de managerierea si implementare metodelor aferente API-urilor necesare aplicatiei mash-up si implementarea acestora utilizand framework-ul Laravel.</p>
+        <p><a>Lingurariu Georgiana</a> s-a ocupat de partea de interfata a aplicatiei, arhitectura generala si functionalitatile ce sunt necesare aplicatiei. Pe partea de back-end se va ocupa de metodele necesare cautarii in baza de date atunci cand se acceseaza "Search-ul" de catre utilizator.</p>
+      </section>
+	
+  </body>
+</html>

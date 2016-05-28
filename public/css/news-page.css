@@ -1,0 +1,52 @@
+header{
+	border-bottom: 1px solid #808080;
+	margin-bottom: 70px;
+}
+
+section#title-page{
+	margin: 50px;
+}
+section > h6 {
+	font: 30px Arial, Helvetica, sans-serif;
+	text-decoration: bold;
+}
+.picture-page > img {
+	border-radius: 2px;
+	max-width: 600px;
+	height: 400px;
+}
+
+.first-column,
+.second-column,
+.bottom-column{
+	/*border: 1px solid black;*/
+	margin: 20px;
+}
+
+.first-column{
+	height: 400px;
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+}
+.second-column{
+	height: 400px;
+	width: 40%;
+	float: right;
+	margin-right: 5%;
+}
+.bottom-column{
+	height: 1000px;
+	display: inline-block;
+	width: 80%;
+	margin-right: 10%;
+	margin-left: 10%;
+}
+
+p{
+	font: 20px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.second-column,
+.bottom-column > p{
+	
+}
