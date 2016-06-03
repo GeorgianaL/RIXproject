@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Preference;
 
 class User extends Authenticatable
 {
@@ -25,5 +26,9 @@ class User extends Authenticatable
     ];
     public function videos() {
         return $this->belongsToMany('App\Video');
+    }
+    public function preferences() {
+        $preferences = Preference::where('id_user', $this->id)->first();
+        return $preferences;
     }
 }

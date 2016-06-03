@@ -216,105 +216,110 @@
     </div>
     <!-- modal sign up  -->
 
-    <!-- modal add preferences -->
-    <div class="modal fade" id="addPrefModal" role="dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" data-step="1">Choose your preferences!</h4>
-        </div>
-        <form class="form">
-          <div class="modal-body">
-            <ul>
-                  <li>
-                      Development<ul>
-                        <li><input type="checkbox" id="Java">Java</input></li>
-                        <li><input type="checkbox" id=".NET">.NET</input></li>
-                        <li><input type="checkbox" id="Android">Android</input></li>
-                        <li><input type="checkbox" id="iOS">iOS</input></li>
-                        <li><input type="checkbox" id="HTML">HTML</input></li>
-                        <li><input type="checkbox" id="CSS">CSS</input></li>
-                        <li><input type="checkbox" id="JavaScript">JavaScript</input></li>
-                        <li><input type="checkbox" id="Web">Web</input></li>
-                        <li><input type="checkbox" id="APIs">APIs</input></li>
-                      </ul>
-                  </li>
-                  <li>
-                    Architecture and Design<ul>
-                      <li><input type="checkbox" id="Architecture">Architecture</input></li>
-                      <li><input type="checkbox" id="Design">Design</input></li>
-                      <li><input type="checkbox" id="Methodology">Methodology</input></li>
-                      <li><input type="checkbox" id="Frameworks">Frameworks</input></li>
-                      <li><input type="checkbox" id="Tools">Tools</input></li>
-                    </ul>
-                  </li>
-                  <li>
-                    Data Science<ul>
-                      <li><input type="checkbox" id="Machine_Learning">Machine Learning</input></li>
-                      <li><input type="checkbox" id="Data_Bases">Data Bases</input></li>
-                      <li><input type="checkbox" id="Performance">Performance</input></li>
-                      <li><input type="checkbox" id="Productivity">Productivity</input></li>
-                    </ul>
-                  </li>
-                  <li>
-                    DevOps<ul>
-                      <li><input type="checkbox" id="Cloud">Cloud</input></li>
-                      <li><input type="checkbox" id="Automation">Automation</input></li>
-                      <li><input type="checkbox" id="Testing">Testing</input></li>
-                      <li><input type="checkbox" id="Security">Security</input></li>
-                    </ul>
-                  </li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn" id="signupSubmit">Save</button>
-            </div>
-          </div>
-      </form>
-    </div>
-  </div>  
-
-<!-- doar video-uri carora userul le-a dat like -->
-
-  <div class="modal fade" id="myPrefNewsModal" role="dialog">
+   @if (Auth::check())
+           <!-- modal add preferences -->
+  <div class="modal fade" id="addPrefModal" role="dialog">
       <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" data-step="1">Check out your prefered news!</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" data-step="1">Choose your preferences!</h4>
           </div>
-          <div class="modal-body">
-              <section class="grid-container"> 
-                  <section class="content">
-                  @foreach ($videosLikes as $video)
-                  <div class="cart-item">
-                    <div class="cart-header">
-                      <a href="/video/{{ $video['id'] }}"<p class="text-center">{{ $video['name'] }}</p></a>
-                    </div>
-                    <div class="cart-body">  
-                      <div class="cart-picture">
-                        {!! $video['embed'] !!}
-                      </div>
-                    </div>
-                    <div class="cart-footer">
-                      <div class="option">
-                        <button class="animated-like"><span data-id="{{ $video['id'] }}">Like</span></button>
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
-              <div class="clearfloat"></div>
-              </section>
-  
-              <footer id="grid-footer">
-              </footer>
-
-              </section>
-          </div>
-          <div class="modal-footer">
-
-          </div>
+          <form class="form" action="/addPreferences" method="post">
+              <div class="modal-body">
+                  <ul>
+                      <li>
+                          Development<ul>
+                              <li><input type="checkbox" name="java" id="Java" {{ Auth::user()->preferences()->java ? 'checked' : '' }} />Java</li>
+                              <li><input type="checkbox" name="net" id=".NET" {{ Auth::user()->preferences()->net ? 'checked' : '' }}/>.NET</li>
+                              <li><input type="checkbox" name="android" id="Android" {{ Auth::user()->preferences()->android ? 'checked' : '' }}/>Android</li>
+                              <li><input type="checkbox" name="ios" id="iOS" {{ Auth::user()->preferences()->ios ? 'checked' : '' }}/>iOS</li>
+                              <li><input type="checkbox" name="html" id="HTML" {{ Auth::user()->preferences()->html ? 'checked' : '' }}/>HTML</li>
+                              <li><input type="checkbox" name="css" id="CSS" {{ Auth::user()->preferences()->css ? 'checked' : '' }}/>CSS</li>
+                              <li><input type="checkbox" name="javascript" id="JavaScript" {{ Auth::user()->preferences()->javascript ? 'checked' : '' }}/>JavaScript</li>
+                              <li><input type="checkbox" name="web" id="Web" {{ Auth::user()->preferences()->web ? 'checked' : '' }}/>Web</li>
+                              <li><input type="checkbox" name="apis" id="APIs" {{ Auth::user()->preferences()->apis ? 'checked' : '' }} />APIs</li>
+                          </ul>
+                      </li>
+                      <li>
+                          Architecture and Design<ul>
+                              <li><input type="checkbox" name="architecture" id="Arhitecture" {{ Auth::user()->preferences()->architecture ? 'checked' : '' }}/>Architecture</li>
+                              <li><input type="checkbox" name="design" id="Design" {{ Auth::user()->preferences()->design ? 'checked' : '' }}/>Design</li>
+                              <li><input type="checkbox" name="methodology" id="Methodology" {{ Auth::user()->preferences()->methodology ? 'checked' : '' }}/>Methodology</li>
+                              <li><input type="checkbox" name="frameworks" id="Frameworks" {{ Auth::user()->preferences()->frameworks ? 'checked' : '' }}/>Frameworks</li>
+                              <li><input type="checkbox" name="tools" id="Tools" {{ Auth::user()->preferences()->tools ? 'checked' : '' }}/>Tools</li>
+                          </ul>
+                      </li>
+                      <li>
+                          Data Science<ul>
+                              <li><input type="checkbox" name="machine_learning" id="Machine_Learning" {{ Auth::user()->preferences()->machine_learning ? 'checked' : '' }}/>Machine Learning</li>
+                              <li><input type="checkbox" name="data_bases" id="Data_Bases" {{ Auth::user()->preferences()->data_bases ? 'checked' : '' }}/>Data Bases</li>
+                              <li><input type="checkbox" name="performance" id="Performance" {{ Auth::user()->preferences()->performance ? 'checked' : '' }}/>Performance</li>
+                              <li><input type="checkbox" name="productivity" id="Productivity" {{ Auth::user()->preferences()->productivity ? 'checked' : '' }}/>Productivity</li>
+                          </ul>
+                      </li>
+                      <li>
+                          DevOps<ul>
+                              <li><input type="checkbox" name="cloud" id="Cloud" {{ Auth::user()->preferences()->cloud ? 'checked' : '' }}/>Cloud</li>
+                              <li><input type="checkbox" name="automation" id="Automation" {{ Auth::user()->preferences()->automation ? 'checked' : '' }}/>Automation</li>
+                              <li><input type="checkbox" name="testing" id="Testing" {{ Auth::user()->preferences()->testing ? 'checked' : '' }}/>Testing</li>
+                              <li><input type="checkbox" name="security" id="Security" {{ Auth::user()->preferences()->security ? 'checked' : '' }}/>Security</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+              <div class="modal-footer">
+                  {{ csrf_field() }}
+                  <button type="submit" class="btn" id="addPrefBtn">Save</button>
+              </div>
+          </form>
       </div>
   </div>
+  </div>
+  @endif
+
+  <!-- doar video-uri carora userul le-a dat like -->
+
+ @if (Auth::check())
+     <div class="modal fade" id="myPrefNewsModal" role="dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title" data-step="1">Check out your prefered news!</h4>
+             </div>
+             <div class="modal-body">
+                 <section class="grid-container">
+                     <section class="content">
+                         @foreach ($videosLikes as $video)
+                             <div class="cart-item">
+                                 <div class="cart-header">
+                                     <a href="/video/{{ $video['id'] }}"<p class="text-center">{{ $video['name'] }}</p></a>
+                                 </div>
+                                 <div class="cart-body">
+                                     <div class="cart-picture">
+                                         {!! $video['embed'] !!}
+                                     </div>
+                                 </div>
+                                 <div class="cart-footer">
+                                     <div class="option">
+                                         <button class="animated-like"><span data-id="{{ $video['id'] }}">Like</span></button>
+                                     </div>
+                                 </div>
+                             </div>
+                         @endforeach
+                         <div class="clearfloat"></div>
+                     </section>
+
+                     <footer id="grid-footer">
+                     </footer>
+
+                 </section>
+             </div>
+             <div class="modal-footer">
+
+             </div>
+         </div>
+     </div>
+     @endif
 
 
 

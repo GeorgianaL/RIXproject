@@ -29,3 +29,4 @@ Route::get('/secret/getYoutubeVideo/{tag}', 'VideoController@VideoYoutube');
 // Route::get('/request/addPref', 'PreferencesController@addPref');
 
 Route::post('/getPaginateVideo', 'PageController@showMoreVideos');
+Route::post('/addPreferences', 'UserController@savePreferances');
