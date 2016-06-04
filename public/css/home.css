@@ -188,3 +188,11 @@ ul{
   max-width: 900px;
   max-height: 600px;
 }
+.api {
+    text-align:center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.api input {
+    width: 100%;
+}

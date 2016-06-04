@@ -13,6 +13,15 @@ use App\Preference;
 
 class UserController extends Controller
 {
+	function generateRandomString($length = 10) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
     public function signup(Request $request) {
     	$this->validate($request, [
     		'fullname' => 'required',
@@ -23,7 +32,11 @@ class UserController extends Controller
     	$user->full_name = $request->input('fullname');
     	$user->email = $request->input('email');
     	$user->password = Hash::make($request->input('password'));
+		$user->apiKey = $this->generateRandomString(30);
     	$user->save();
+		$preference = new Preference();
+		$preference->id_user = $user->id;
+		$preference->save();
     	return redirect('/');
     }
     public function login(Request $request) {

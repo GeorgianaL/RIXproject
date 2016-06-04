@@ -5,7 +5,7 @@
 	margin-bottom: 100px;
 }
 .search-box:active{
-	border: none !important;/*it doesn't work*/*/
+	border: none !important;/*it doesn't work*/
 }
 #search-input{
 	border-radius: 15px;

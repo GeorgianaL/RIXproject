@@ -226,6 +226,10 @@
           </div>
           <form class="form" action="/addPreferences" method="post">
               <div class="modal-body">
+                  <div class="api">
+                      <span>If you want to get this videos on your website use this link:</span>
+                      <input type="text" readonly value="{{ Request::root() }}/apis/{{ Auth::user()->apiKey  }}" />
+                  </div>
                   <ul>
                       <li>
                           Development<ul>
