@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2016 at 03:45 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Generation Time: 04 Iun 2016 la 08:50
+-- Versiune server: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,20 +23,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preferences`
+-- Structura de tabel pentru tabelul `preferences`
 --
 
 CREATE TABLE `preferences` (
-  `id_pref` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `java` int(2) NOT NULL,
-  `.net` int(2) NOT NULL,
+  `net` int(2) NOT NULL,
   `android` int(2) NOT NULL,
-  `iOS` int(2) NOT NULL,
+  `ios` int(2) NOT NULL,
   `html` int(2) NOT NULL,
   `css` int(2) NOT NULL,
   `javascript` int(2) NOT NULL,
-  `api` int(2) NOT NULL,
+  `apis` int(2) NOT NULL,
   `data_bases` int(2) NOT NULL,
   `design` int(2) NOT NULL,
   `architecture` int(2) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `preferences` (
   `testing` int(2) NOT NULL,
   `cloud` int(2) NOT NULL,
   `automation` int(2) NOT NULL,
-  `framework` int(2) NOT NULL,
+  `frameworks` int(2) NOT NULL,
   `tools` int(2) NOT NULL,
   `performance` int(2) NOT NULL,
   `productivity` int(2) NOT NULL,
@@ -55,10 +55,17 @@ CREATE TABLE `preferences` (
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Salvarea datelor din tabel `preferences`
+--
+
+INSERT INTO `preferences` (`id`, `id_user`, `java`, `net`, `android`, `ios`, `html`, `css`, `javascript`, `apis`, `data_bases`, `design`, `architecture`, `security`, `web`, `testing`, `cloud`, `automation`, `frameworks`, `tools`, `performance`, `productivity`, `machine_learning`, `methodology`, `created_at`, `updated_at`) VALUES
+(3, 6, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2016-06-04', '2016-06-04');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structura de tabel pentru tabelul `users`
 --
 
 CREATE TABLE `users` (
@@ -66,22 +73,23 @@ CREATE TABLE `users` (
   `full_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(70) NOT NULL,
+  `apiKey` varchar(50) NOT NULL,
   `remember_token` varchar(100) NOT NULL,
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Salvarea datelor din tabel `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Georgiana', 'georgiana@gmail.com', '$2y$10$ycvI65GV8Wpz6qsjlkTPP.jXkSDBiubowcQ/nZmQH3hjVVCiOMwPK', 'VcaG4HT3DfMOal3eBH2nZWFTFiWdEhe5J1OLKQKfHxKvZR9IpTPgzbHqRzmY', '2016-05-14', '2016-05-17');
+INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `apiKey`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Georgiana', 'georgiana@gmail.com', '$2y$10$ycvI65GV8Wpz6qsjlkTPP.jXkSDBiubowcQ/nZmQH3hjVVCiOMwPK', '', 'VcaG4HT3DfMOal3eBH2nZWFTFiWdEhe5J1OLKQKfHxKvZR9IpTPgzbHqRzmY', '2016-05-14', '2016-05-17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_video`
+-- Structura de tabel pentru tabelul `user_video`
 --
 
 CREATE TABLE `user_video` (
@@ -93,7 +101,7 @@ CREATE TABLE `user_video` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_video`
+-- Salvarea datelor din tabel `user_video`
 --
 
 INSERT INTO `user_video` (`id`, `user_id`, `video_id`, `created_at`, `updated_at`) VALUES
@@ -105,7 +113,7 @@ INSERT INTO `user_video` (`id`, `user_id`, `video_id`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
--- Table structure for table `videos`
+-- Structura de tabel pentru tabelul `videos`
 --
 
 CREATE TABLE `videos` (
@@ -124,7 +132,7 @@ CREATE TABLE `videos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `videos`
+-- Salvarea datelor din tabel `videos`
 --
 
 INSERT INTO `videos` (`id`, `name`, `uri`, `description`, `duration`, `embed`, `width`, `height`, `link`, `tags`, `created_at`, `updated_at`) VALUES
@@ -149,7 +157,7 @@ INSERT INTO `videos` (`id`, `name`, `uri`, `description`, `duration`, `embed`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video_tags`
+-- Structura de tabel pentru tabelul `video_tags`
 --
 
 CREATE TABLE `video_tags` (
@@ -163,6 +171,13 @@ CREATE TABLE `video_tags` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `preferences`
+--
+ALTER TABLE `preferences`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_pref` (`id`);
 
 --
 -- Indexes for table `users`
@@ -194,10 +209,15 @@ ALTER TABLE `video_tags`
 --
 
 --
+-- AUTO_INCREMENT for table `preferences`
+--
+ALTER TABLE `preferences`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user_video`
 --

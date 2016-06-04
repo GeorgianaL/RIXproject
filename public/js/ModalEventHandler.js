@@ -48,7 +48,7 @@ $(document).ready(function(){
 				$('#username').val("");
 				$('#fullname').val("");
 				$('#passw').val("");
-				// mesaj de confirmare
+				alert("Inregistrarea s-a facut cu success!");
 			});
 		}
 	});
@@ -69,8 +69,8 @@ $(document).ready(function(){
 			$.post('/request/login', {email: email, password: password}, function(data) {
 				$('#emails').val("");
 				$('#psw').val("");
-				//location.reload();
 				alert(data);
+				if (data=="Login successfull!") location.reload();
 			});
 		}
 	});
