@@ -77,8 +77,8 @@ $(document).ready(function(){
 
 // like button
 
-	$(document).on('click', '.animated-like span', function() {
-		var id = $(this).attr('data-id');
+	$(document).on('click', '.animated-like', function() {
+		var id = $(this).find('span').attr('data-id');
 		$.post('/likevideo', {id: id}, function(data) {
 			if (data==0) {
 				alert("You've already liked it!");
