@@ -293,10 +293,11 @@
              <div class="modal-body">
                  <section class="grid-container">
                      <section class="content">
+                         @if (isset($videoLikes))
                          @foreach ($videosLikes as $video)
                              <div class="cart-item">
                                  <div class="cart-header">
-                                     <a href="/video/{{ $video['id'] }}"<p class="text-center">{{ $video['name'] }}</p></a>
+                                     <a href="/video/{{ $video['id'] }}"><p class="text-center">{{ $video['name'] }}</p></a>
                                  </div>
                                  <div class="cart-body">
                                      <div class="cart-picture">
@@ -310,6 +311,7 @@
                                  </div>
                              </div>
                          @endforeach
+                         @endif
                          <div class="clearfloat"></div>
                      </section>
 
