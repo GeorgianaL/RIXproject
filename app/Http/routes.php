@@ -21,6 +21,7 @@ Route::post('/request/login', 'UserController@login');
 
 
 Route::get('/secret/getVimeoVideos', 'VideoController@getVimeo');
+Route::get('/secret/getSlideShare/{tag}', 'VideoController@getSlideShare');
 Route::post('/secret/insertVideoVimeo', 'VideoController@insertVideoVimeo');
 
 Route::post('/likevideo', 'VideoController@likeVideo');

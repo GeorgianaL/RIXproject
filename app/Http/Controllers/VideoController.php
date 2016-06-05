@@ -8,41 +8,43 @@ use App\Http\Requests;
 use App\Video;
 use App\video_tags;
 use Auth;
+use Mockery\Exception;
 use Youtube;
 use App\User;
+use GuzzleHttp;
 
 class VideoController extends Controller
 {
     public function getVimeo() {
-    	return view('pages.secret');
+        return view('pages.secret');
     }
     public function insertVideoVimeo(Request $request) {
-    	$videos = $request->input('videos');
-    	foreach ($videos as $video) {
-    		if ($video['embed']['html'] != "" && isset($video['tags'])) {
-    			$item = new Video();
+        $videos = $request->input('videos');
+        foreach ($videos as $video) {
+            if ($video['embed']['html'] != "" && isset($video['tags'])) {
+                $item = new Video();
                 var_dump($video);
-    			$item->name = $video['name'];
-    			$item->description = $video['description'];
-    			$item->duration = $video['duration'];
-    			$item->uri = $video['uri'];
-    			$item->embed = $video['embed']['html'];
-    			$item->width = $video['width'];
-    			$item->height = $video['height'];
+                $item->name = $video['name'];
+                $item->description = $video['description'];
+                $item->duration = $video['duration'];
+                $item->uri = $video['uri'];
+                $item->embed = $video['embed']['html'];
+                $item->width = $video['width'];
+                $item->height = $video['height'];
                 $item->tags = '';
                 foreach ($video['tags'] as $tag) {
                     $item->tags .= $tag['name'];
                 }
-    			$item->link = $video['link'];
-    			$item->save();
-    		}
-    	}
+                $item->link = $video['link'];
+                $item->save();
+            }
+        }
     }
     public function VideoYoutube(Request $request, $tag) {
         $videoList = Youtube::searchVideos($tag);
         foreach ($videoList as $item) {
             $item = get_object_vars($item);
-             $item = get_object_vars($item['id']);
+            $item = get_object_vars($item['id']);
             $video = Youtube::getVideoInfo($item['videoId']);
             $video = get_object_vars($video);
             $desc = get_object_vars($video["snippet"]);
@@ -63,17 +65,17 @@ class VideoController extends Controller
         return 1;
     }
     public function likeVideo(Request $request) {
-    	if (Auth::check()) {
+        if (Auth::check()) {
             $this->validate($request, ['id'=>'exists:videos,id']);
-    		$count = Auth::user()->videos()->find($request->input('id'));
-    		if (!$count) {
+            $count = Auth::user()->videos()->find($request->input('id'));
+            if (!$count) {
                 $video = Video::find($request->input('id'));
-    			Auth::user()->videos()->attach($video);
-    			return 1;
-    		}
+                Auth::user()->videos()->attach($video);
+                return 1;
+            }
             else return 0;
-    	}
-    	else return 0;
+        }
+        else return 0;
     }
     public function getJsonVideo(Request $request, $key) {
         $videosLikes = array();
@@ -208,5 +210,45 @@ class VideoController extends Controller
         }
         return response()->json($videosLikes);
     }
-
+    private function xml2array ($xmlObject, $out = array () )
+    {
+        foreach ( (array) $xmlObject as $index => $node )
+            $out[$index] = ( is_object ( $node ) ) ? $this->xml2array ( $node ) : $node;
+        return $out;
+    }
+    private function delete_all_between($beginning, $end, $string) {
+        $beginningPos = strpos($string, $beginning);
+        $endPos = strpos($string, $end);
+        if ($beginningPos === false || $endPos === false) {
+            return $string;
+        }
+        $textToDelete = substr($string, $beginningPos, ($endPos + strlen($end)) - $beginningPos);
+        return str_replace($textToDelete, '', $string);
+    }
+    public function getSlideShare($tag) {
+        $secret = "YeWaEYF1";
+        $key = "wsVmmWpp";
+        $apiurl = "https://www.slideshare.net/api/2/search_slideshows";
+        $ts = time();
+        $hash = sha1($secret.$ts);
+        try {
+            $res = simplexml_load_file($apiurl."?api_key=".$key."&ts=".$ts."&hash=".$hash."&q=".$tag);
+        }catch(Exception $e) {
+            //
+        }
+        $slideshows = $this->xml2array($res);
+        foreach ($slideshows["Slideshow"] as &$slide) {
+            $slide = $this->xml2array($slide);
+            if (isset($slide['Embed'])) {
+                $video = new Video();
+                $video->name = $slide['Title'];
+                if (!is_array($slide['Description'])) $video->description = $slide['Description'];
+                $embed = $slide['Embed'];
+                $video->embed = $this->delete_all_between('<div', '</div>', $embed);
+                $video->tags = $slide['Title'];
+                $video->save();
+            }
+        }
+        return 1;
+    }
 }
