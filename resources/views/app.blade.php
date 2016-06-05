@@ -293,7 +293,7 @@
              <div class="modal-body">
                  <section class="grid-container">
                      <section class="content">
-                         @if (isset($videoLikes))
+                         @if (isset($videosLikes))
                          @foreach ($videosLikes as $video)
                              <div class="cart-item">
                                  <div class="cart-header">

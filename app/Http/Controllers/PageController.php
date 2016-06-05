@@ -141,6 +141,8 @@ class PageController extends Controller
 					array_push($videosLikes, $vid);
 				}
 			}
+			$videos = $videosLikes;
+			$videosLikes = Auth::user()->videos()->get();
 		}
 		return view('pages.home', ['videos'=>$videos, 'videosLikes'=>$videosLikes]);
 	}
