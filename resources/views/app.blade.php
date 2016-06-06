@@ -57,7 +57,7 @@
     <div class="col-sm-3">
       <p class="text-center"><strong>Ana</strong></p>
       <a href="#demo1" data-toggle="collapse">
-        <img src="/photos/we.png" class="img-circle person" width="120" height="120"  alt="Image">
+        <img src="/photos/ana.png" class="img-circle person" width="120" height="120"  alt="Image">
       </a>
       <div id="demo1" class="collapse">
         <p>Back-end Developer</p>
@@ -69,7 +69,7 @@
     <div class="col-sm-3">
       <p class="text-center"><strong>Georgiana</strong></p>
       <a href="#demo2" data-toggle="collapse">
-        <img src="/photos/we.png" class="img-circle person" width="120" height="120"  alt="Image">
+        <img src="/photos/georgiana.png" class="img-circle person" width="120" height="120"  alt="Image">
       </a>
       <div id="demo2" class="collapse">
         <p>Front-end Developer</p>
@@ -81,11 +81,11 @@
     <div class="col-sm-3">
       <p class="text-center"><strong>Madalina</strong></p>
       <a href="#demo3" data-toggle="collapse">
-        <img src="/photos/we.png" class="img-circle person" width="120" height="120"  alt="Image">
+        <img src="/photos/madalina.png" class="img-circle person" width="120" height="120"  alt="Image">
       </a>
       <div id="demo3" class="collapse">
-        <p>Front-end Developer</p>
-        <p>Bootstrap Enthusiastic</p>
+        <p>Back-end Developer</p>
+        <p>Data-base Enthusiastic</p>
         <p>Wanna be Front-end Developer</p>
       </div>
     </div>
@@ -93,12 +93,12 @@
     <div class="col-sm-3">
       <p class="text-center"><strong>Diana</strong></p>
       <a href="#demo4" data-toggle="collapse">
-        <img src="/photos/we.png" class="img-circle person" width="120" height="120"  alt="Image">
+        <img src="/photos/diana.png" class="img-circle person" width="120" height="120"  alt="Image">
       </a>
       <div id="demo4" class="collapse">
         <p>Front-end Developer</p>
-        <p>Bootstrap Enthusiastic</p>
-        <p>Wanna be Front-end Developer</p>
+        <p>Data-base Enthusiastic</p>
+        <p>Wanna be Back-end Developer</p>
       </div>
     </div>
   </div>
@@ -229,6 +229,7 @@
                   <div class="api">
                       <span>If you want to get this videos on your website use this link:</span>
                       <input type="text" readonly value="{{ Request::root() }}/apis/{{ Auth::user()->apiKey  }}" />
+                      <a href="/documentatie/documentatie.docx" download>Documentatie</a>
                   </div>
                   <ul>
                       <li>

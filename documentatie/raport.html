@@ -43,29 +43,33 @@
       <section>
       	<h2>Introducere</h2>
       		<p>
-      			Numele aplicatiei ce urmeaza sa o dezvoltam este Resource Interactive eXplorer, ce urmareste a fi un instrument Web de colectare, de regasire si de vizualizare a informatiilor referitoare la resurse stiintifice si/sau tehnologice (articole, carti, rapoarte tehnice, prezentari, cod-sursa si altele) ale utilizatorilor din domeniul informaticii.
+      			Numele aplicatiei ce urmeaza sa o dezvoltam este Resource Interactive eXplorer, ce urmareste a fi un instrument Web de colectare, de regasire si de vizualizare a informatiilor referitoare la resurse stiintifice si/sau tehnologice (videori, prezentari)  ale utilizatorilor din domeniul informaticii.
       		</p>
-      		<p> Dezvoltand o aplicatie de tip mash-up, se vor oferi informatii de interes pentru o anumita persoana, pornind de la 		resursele multimedia deja colectate si clasificate (eventual, prin tagging) via aplicatii Web sociale precum Feedly, 	GitHub, Google Scholar, Lynrd, Pocket, Slideshare, Vimeo etc. Informatiile (structurate pe diverse criterii) vor fi 	vizualizate/redate in formate precum HTML, SVG sau text obisnuit. De asemenea, sistemul va oferi acces la informatii 	prin intermediul unui API REST.
+      		<p> Dezvoltand o aplicatie de tip mash-up, se vor oferi informatii de interes pentru o anumita persoana, pornind de la resursele multimedia deja colectate si clasificate (eventual, prin tagging) via aplicatii Web sociale precum Feedly, GitHub, Google Scholar, Lynrd, Pocket, Slideshare, Vimeo etc. Informatiile (structurate pe diverse criterii) vor fi vizualizate/redate in formate precum HTML, SVG sau text obisnuit. De asemenea, sistemul va oferi acces la informatii prin intermediul unui API REST.
       		</p>
       </section>
 
       <section>
       	<h2>Prezentare generala a aplicatiei</h2>
       		<p>
-      			Aplicatia va fi usor de utilizat deoarece functionalitatile sale de baza vor permite utilizatorilor sa aiba acces la informatii utile si personalizate. Interfata propusa se doreste a fi atat atractiva, cat si discreta, pentru ca focusul utilizatorului sa fie mentinut pe continut. 
+      			Aplicatia va fi usor de utilizat deoarece functionalitatile sale de baza vor permite utilizatorilor sa aiba acces la informatii utile si personalizate. Interfata propusa se doreste a fi atat atractiva, cat si discreta, pentru ca focusul utilizatorului sa fie mentinut pe continut.</p>
+      		<p>
+				Prima pagina a aplicatiei va permite oricarui utilizator sa vizualizeze stirile oferite de API-urile alese, insa fara posibilitatea de a le filtra. Pentru a putea vizualiza doar stiri din subdomeniile preferate, un utilizator va trebui sa isi creeze un cont, dupa care, accesand sectiunea My Favorites din meniu, si apoi sectiunea Add New Preferences se va declansa afisarea unui modal ce contine o lista de sub-domenii ale informaticii, cum ar fi Android Development, IOs Development, Software testing, Design etc.
+
       		</p>
           <p>
-            Prima pagina a aplicatiei va permite oricarui utilizator sa vizualizeze stirile oferite de API-urile alese, insa fara posibilitatea de a le filtra. Pentru a putea vizualiza doar stiri din subdomeniile preferate, un utilizator va trebui sa isi creeze un cont, dupa care, accesand sectiunea My Favorites din meniu, si apoi sectiunea Add New Preferences se va declansa afisarea unui modal ce contine o lista de sub-domenii ale informaticii, cum ar fi Android Development, IOs Development, Software testing, Design etc.
-          </p>
-          <p>
             Atunci cand este inregistrat, un utilizator isi va putea modifica preferintele in legatura cu subdomeniile preferate. De asemenea, va putea mentine o arhiva a stirilor preferate, apasand butonul de "Like" aflat sub fiecare stire. Pentru a mentine si a reaccesa un istoric al video-urilor preferate, utilizatorul va accesa sectiunea My Favorites din meniu si apoi sectiunea My Prefered News, ce va declansa afisarea unui modal ce contine acele video-uri.
+           </p>
+           <p>
+			Pentru a pune pune la dispozitie aceste video-uri si prezentari, am extras date de pe API-uri.
+
           </p>
       </section>
 
       <section>
         <h2>Prezentarea interfetei aplicatiei</h2>
-        <p>Prima pagina a aplicatie contine meniul format din logo, referinta catre sectiunea "About Us", referinta catre sectiunea "Contact" si un buton de logare. Daca un utlizator nu are cont, acesta poate accesa Login-ul si va declansa deschiderea modalului de logare, dupa care va apasa butonul de "Sign up" si va declansa deschiderea celui de al doilea modal, pentru completarea datelor personale.</p>
-        <p>Dupa logarea cu succes, utilizatorul va fi directionat pe o pagina unde va avea acces la informatii personalizate. Meniul acestei pagini contine in plus sectiunea "My Favorites", ce permite accesarea a doua butoane, Add New Preferences si My Prefered News. Pentru a realiza acest lucru, am folosit functionalitatea oferita de framework-ul Lavravel: @if (Auth::check()) {...}  @else {...} @endif.
+        <p>PPrima pagina a aplicatie contine meniul format din logo, referinta catre sectiunea "About Us", referinta catre sectiunea "Contact" si un buton de logare. Daca un utlizator nu are cont, acesta poate accesa butonul de “Login” si va declansa deschiderea modalului de logare, dupa care va apasa butonul de "Sign up" si va declansa deschiderea celui de al doilea modal, pentru completarea datelor personale.</p>
+        <p>Dupa logarea cu succes, utilizatorul va fi directionat pe o pagina unde va avea acces la informatii personalizate. Meniul acestei pagini contine in plus sectiunea "My Favorites", ce permite accesarea a doua butoane, Add New Preferences si My Prefered News. Pentru a realiza acest lucru, am folosit functionalitatea oferita de framework-ul Laravel: @if (Auth::check()) {...} @else {...} @endif.
         </p>
         <!-- <p>In plus fata de prima pagina a aplicatiei, exista si un field "Search" pentru cautarea anumitor stiri.
         </p> -->
@@ -91,6 +95,12 @@
 		</p>
 	  </section>
 	  
+	  <section>
+	  	<h2>
+	  	Arhitectura aplicatiei
+	  	</h2>
+	  	<img src="diagrama.png" alt="Diagrama">
+	  </section>
       <section typeof="sa:MaterialsAndMethods" id="motivation">
         <h2>Etapele intermediare ale dezvoltării proiectului</h2>
           <p>
@@ -98,36 +108,16 @@
 			Un API specifică modul în care componentele software ar trebui să interacționeze, astfel un API bun ne ajută să dezvoltăm mai ușor aplicația prin furnizarea altor elemente software.
 			Trebuie sã cunoaștem adresa URL a furnizorului de servicii și metodele prin care avem acces la serviciul oferit (nume, parametri, rezultat). Interfața API este limitatã la câteva operații în cazul serviciilor de tip  REST.
           </p>
+		  <p>
+		  Pentru a pune pune la dispozitie aceste video-uri si prezentari, am extras date de pe API-urile oferite de Vimeo, YoutTube si Slideshare.
+			</p>
+			<p>
+Pentru a putea colecta video-uri de pe Vimeo si a le introduce in baza de date, trebuie facut apelul “'/secret/getVimeoVideos'” care apeleaza functia getVimeo() prezentata in VideoController ce parseaza un Json si introduce in baza de date campurile: name, description, duration, uri, embed, width, height, tags.
+</p>
 
-          <p>
-            In implementarea aplicatiei vom utiliza un API oferit de Embedly pentru a converti URL-uri in clipuri video, imagini sau articole ce provin de pe diverse site-uri. Embed ne permite sa incorporam cu usurinta in aplicatia noastra continut de pe Youtube, Vimeo, Vine, Flickr prin intermendiul API-ului oEmbed, sa extragem continut prin API-ul Extract, sa afisam continut prin Display API, iar prin Video API putem incarca si reda fisierele video. 
-            <ul>
-              <li>
-                <i>oEmbed</i>
-              </li>
-              URL:  <a href="https://api.embedly.com/1/oembed">https://api.embedly.com/1/oembed</a>. Acest API este utilizat pentru incorporarea de continut de la orice adresa URL.Foloseste metoda GET.
-              <li>
-                <i>Extract</i> 
-              </li>
-              URL:  <a href ="https://api.embedly.com/1/extract">https://api.embedly.com/1/extract</a>. Ne permite sa extragem articole si sa preluam mai multe metadate despre acestea.
-              Foloseste metoda GET.
-              <li>
-                <i>Display</i>
-              </li>
-              URL:  <a href = "https://i.embed.ly/1/display">https://i.embed.ly/1/display</a>. 
-              Este un proxy care ne perminte sa incorporam imagini nesigure in pagini securizate, fara avertisment si foloseste o imagine alternativa pentru imaginile care nu au fost gasite. 
-              Foloseste metoda GET. 
-              <li>
-                <i>Video</i>
-              </li>
-              URL:  <a href = "https://upload.embed.ly/1/video">https://upload.embed.ly/1/video</a>. 
-              Utilizand acest API recurgem la o modalitate rapida si scalabila pentru a incarca si reda fisierele video din aplicatia noastra. Acesta foloseste metoda POST.
-          </ul>
-        </p>
-
-		  
-		<p>
+         <p>
 			Pentru a colecta informații disponibile pe SlideShare vom utiliza următoarele metode API:
+			</p>
 		<ul>
           <li>
            <i> Get SlideShare Infomation </i>
@@ -164,18 +154,24 @@
 			-state: Parametru optional. Este un string de metadate utilizate de aplicatia noastra.
 		</p>
 		<p>
-		In aplicatia noastra vom include si unele API-uri oferite de Youtube pentru incarcarea unor clipuri video, a comentariilor aferentele acestora precum si pentru a gestiona un play-list.
+		In aplicatia noastra vom include si API-ul oferit de Youtube pentru incarcarea clipurilor video, a canalelor existente pe aceasta platforma si a play-listurilor,daca exista, precum si pentru cautarea acestora.
 		<br>
-		Vom face o cerere HTTP, apeland GET la URL-ul  <a href="https://www.googleapis.com/youtube/v3/videos">https://www.googleapis.com/youtube/v3/videos</a>
+		Am realizat o cerere catre Google pentru a ne ofera cheia pentru API-ul Youtube. Apoi vom face o cerere HTTP, apeland GET la URL-ul <a href="https://www.googleapis.com/youtube/v3/videos">https://www.googleapis.com/youtube/v3/videos</a> pentru a obtine video-uri. La fel si pentru celelalte elemente care le dorim extrase de pe Youtube.  
 		<br>
 		<b>Parametri necesari</b><br>
-		-part: Este un string ce reprezinta o lista cu proprietatile resursei video, separate prin virgula. 
+		-part: returneaza o lista cu proprietatile resursei video, separate prin virgula. 
 		<br>
-		-chart: Acest parametru identifica diagrama pe care dorim sa o preluam
+		-regionCode: returneaza rezultatele in functie de tara 
 		<br>
-		-id: Un parametru de tip string ce reprezinta lista id-urilor videoclipurilor de pe Youtube pentru resursele pe care dorim sa le preluam.
+		-maxResults: specifica numarul de rezultate care vor fi returnate 
 		<br>
-		-myRating: Acesta poate fi utilizat doar intr-o cerere autorizata. Poate fi setat cu valorile like sau dislike, astfel API-ul returneaza clipurile in functie de aceasta valoare.	
+		-q: reprezinta interogarea ce va fi executata pentru cautare 
+		<br>
+		-order: specifica metoda ce va fi folosita pentru ordonarea rezultatelor 
+		<br>
+		-channelId: specifica API-ului ca rezultatele returnate trebuie sa apartina canalului  
+		<br>
+		-pageToken: specifica o anumita pagina ce trebuie returnata
 			
 		</p>
 		  </p>
@@ -183,37 +179,24 @@
 
      <section>
      <p> Pentru stocarea datelor in cadrul aplicatiei vom folosi ca suport sistemul de gestiune MySQL incorporate in cadrul aplicatiei phpMyAdmin. Acest sistem de gestiune contine extensia MySQLi, ce impreuna cu PHP 5, ofera o serie de functii ce ajuta la accesarea facila bazelor de date. </p>
-     <p>Baza de date va stoca date precum: datele de inregistrare a administratorilor, ale utilizatorilor aplicatiei si date optionale, alese de utilizatori la inregistrarea in aplicatie. Aceste date vor fi retinute intr-o tabela <i>USERS</i>, ce va contine campuri precum : id ( cheie unica asignat automat fiecarui utilizator), nume, email si parola ( date ce sunt completate de utilizator la inregistrarea in aplicatie). De asemenea, intr-o alta tabela <i>Domenii</i> vor fi retinute preferintele care pot fi alese de fiecare utilizator la inregistrarea in aplicatie. Aceasta a doua tabela va retine numele domeniilor impreuna cu id-ul utilizatorului care l-a ales(cheie straina din tabela Users) . Astfel un utilizator isi va putea accesa cu usurinta lista cu preferinte alese si va mai putea adauga si altele.</p>
+     <p>Baza de date va stoca date precum: datele de inregistrare a administratorilor, ale utilizatorilor aplicatiei si date optionale, alese de utilizatori la inregistrarea in aplicatie. Aceste date vor fi retinute intr-o tabela <i>Users</i>, ce va contine campuri precum : id ( cheie unica asignat automat fiecarui utilizator), nume, email si parola ( date ce sunt completate de utilizator la inregistrarea in aplicatie).</p>
+     <p>De asemenea, intr-o alta tabela <i>Preferinte</i> vor fi retinute preferintele care pot fi alese de fiecare utilizator la inregistrarea in aplicatie. Aceasta a doua tabela va retine numele domeniilor impreuna cu id-ul utilizatorului care l-a ales(cheie straina din tabela Users) . Astfel un utilizator isi va putea accesa cu usurinta lista cu preferinte alese si va mai putea adauga si altele.</p>
+     <p>
+	Intr-o alta tabela, <i>User_video</i>, vor fi retinute efectiv preferintele utilizitarilor prin salvarea id-urilor userilor si a video-urilor favorite.
+	</p>
+	<p>
+	Tabelul <i>Videos</i> va retine fiecare video salvat, prin stocarea id-ului sau, nume, url, descriere, durata, tag-uri si alte optiuni preluate prin intermediul API-ului. Toate tag-urile de la toate video-urile preluate in aplicatie, vor fi deasemenea salvate intr-un table <i>Video_tags</i>, ce va retine pentru fiecare tag unic, id-ul si id-ul video-ului.
+	</p>
 
      <img src="bd.png" alt="bd-diagram">
 
-     <p>Pentru a stabili conexiunea cu baza de date si de a executa instructiune precum INSERT, UPDATE, DELETE, SELECT, MySQLi ofera comezi precum:</p>
-     <ul>
-     <li>mysqli_connect("localhost",”nume_utilizator”,”parola”,”nume_BD”) - stabileste conexiunea cu baza de date, unde numele de utilizator si parola sunt datele de conectare in aplicatia phpMyAdmin, iar numele bazei de data reprezinta numele dat directorului in care se gasesc tabelele pentru aplicatia noastra.</li>
-     <li>mysqli_connect_errno() - verifica daca conexiunea s-a realizat cu succes, in caz contrar va expune eroarea intalnita cu ajutorul functiei mysqli_connect_error()</li>
-     <li>mysqli_query($conn, $sql) - va executa interogarea <i>$sql</i> daca conexiunea <i>$conn</i> a fost stabilita cu succes     </li>
-     <li>mysqli_num_rows($result) - va verifica daca interogarea a returnat cel putin un rand. In caz afirmativ, pentru autetificare, numele si parola vor fi validate si utilizatorului i se va permite accesul pe pagina profilului sau. In caz contrar, daca nici un rand nu a fost returnat, inseamna ca numele si parola introduse nu au fost gasite in baza de date si utilizatorului i se va cere reintroducerea datelor. De asemenea, exista posibilitatea ca interogarea sa nu poata fi executata, caz in care, va fi returnata o eroare cu ajutorul functiei mysqli_error($conn).</li>
-     <li>mysqli_close($conn) - va inchide conexiunea cu baza de date atunci cand toate interogarile dorite au fost executate</li>
-     </ul>
-     <p>Pentru a preveni SQL Injection, inainte de a folosi datele introduse de catre utilizatori, le vom filtra si verifica daca sunt de tipul corect sau daca contin caractere diferite de cele ce trebuie introduse. Vom folosi functii precum: </p>
-     <ul>
-     <li>$data=trim($data) - sterge spatiile dinaintea si dupa sirul de caractere introdus</li>
-     <li> $data = stripslashes($data) - sterge caracterele '\'</li>
-     <li> $data = htmlspecialchars($data) </li>
-     <li> preg_match("/^[a-zA-Z ]*$/",$data) - filtreaza date precum username-ul sau parola</li> 
-     <li>filter_var($email, FILTER_VALIDATE_EMAIL) - filtreaza email-ul</li>
-    </ul>
-
-    <p>O alta modalitate de a preveni SQL Injection este accea de a da drepturi cat mai putin utilizatorilor aplicatiei asupra bazei de date. Conexiunea cu baza de date nu se face ca si superuser, ci ca un utilizator ce are doar drepturile ce ii permit vizualizarea si inserarea. Totodata, aplicatia nu permite afisarea de date specifice a bazei de date si foloseste un sistem de raportare a erorilor care este ascunsa de utilizatorul obisnuit.</p>
-      </section>
-
-
-
+     
       <section>
         <h2>Membrii echipei</h2>
-        <p><a>Cretu Ana</a> se va ocupa de partea de baze de date.</p>
-        <p><a>Gusa Diana</a> si <a>Iacob Madalina</a> se vor ocupa de managerierea si implementare metodelor aferente API-urilor necesare aplicatiei mash-up si implementarea acestora utilizand framework-ul Laravel.</p>
-        <p><a>Lingurariu Georgiana</a> s-a ocupat de partea de interfata a aplicatiei, arhitectura generala si functionalitatile ce sunt necesare aplicatiei. Pe partea de back-end se va ocupa de metodele necesare cautarii in baza de date atunci cand se acceseaza "Search-ul" de catre utilizator.</p>
+        <p><b>Ana Cretu</b> s-a ocupat de obtinerea video-urilor de pe API-ul oferit de YouTube si de sistemul de logare.</p>
+        <p><b>Diana Gusa</b> s-a ocupat de sistemul de gestionare a preferintelor a unui utilizator, atat pe partea de interfata, cat si pe partea de functii in back-end, precum  si de crearea API-ului REST.</p>
+        <p><b>Madalina Iacob</b> s-a ocupat de obtinerea video-urilor de pe API-ul oferit de Slideshare si de crearea API-ului REST.</p>
+        <p><b>Georgiana Lingurariu</b> s-a ocupat de structura interfetei aplicatiei si de obtinerea video-urilor de pe API-ul oferit de Vimeo.</p>
       </section>
 	
   </body>
