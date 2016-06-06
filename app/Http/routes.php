@@ -32,3 +32,4 @@ Route::get('/secret/getYoutubeVideo/{tag}', 'VideoController@VideoYoutube');
 Route::post('/getPaginateVideo', 'PageController@showMoreVideos');
 Route::post('/addPreferences', 'UserController@savePreferances');
 Route::get('/apis/{key}', 'VideoController@getJsonVideo');
+Route::get('/search', 'PageController@search');

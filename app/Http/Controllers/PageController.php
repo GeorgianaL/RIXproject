@@ -10,6 +10,11 @@ use Auth;
 
 class PageController extends Controller
 {
+	public function search() {
+		$keywords = $_GET['keywords'];
+		$videos = Video::where('name', 'LIKE', '%'.$keywords.'%')->get();
+		return view('pages.search', ['videos'=>$videos, 'keywords'=>$keywords]);
+	}
 	public function showIndex() {
 		$videos = Video::paginate(10);
 		$videosLikes = array();
