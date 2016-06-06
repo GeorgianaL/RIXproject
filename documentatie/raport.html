@@ -58,29 +58,24 @@
 
       		</p>
           <p>
-            Atunci cand este inregistrat, un utilizator isi va putea modifica preferintele in legatura cu subdomeniile preferate. De asemenea, va putea mentine o arhiva a stirilor preferate, apasand butonul de "Like" aflat sub fiecare stire. Pentru a mentine si a reaccesa un istoric al video-urilor preferate, utilizatorul va accesa sectiunea My Favorites din meniu si apoi sectiunea My Prefered News, ce va declansa afisarea unui modal ce contine acele video-uri.
-           </p>
-           <p>
-			Pentru a pune pune la dispozitie aceste video-uri si prezentari, am extras date de pe API-uri.
-
+            Atunci cand este inregistrat, un utilizator isi va putea modifica preferintele in legatura cu subdomeniile preferate. De asemenea, va putea mentine o arhiva a stirilor preferate, apasand butonul de "Like" aflat sub fiecare stire. Pentru a mentine si a reaccesa un istoric al video-urilor preferate, utilizatorul va accesa sectiunea My Favorites din meniu si apoi sectiunea My Prefered News, ce va declansa afisarea unui modal ce contine acele video-uri. Pentru a pune pune la dispozitie aceste video-uri si prezentari, am extras date de pe API-uri.
           </p>
       </section>
 
       <section>
         <h2>Prezentarea interfetei aplicatiei</h2>
-        <p>PPrima pagina a aplicatie contine meniul format din logo, referinta catre sectiunea "About Us", referinta catre sectiunea "Contact" si un buton de logare. Daca un utlizator nu are cont, acesta poate accesa butonul de “Login” si va declansa deschiderea modalului de logare, dupa care va apasa butonul de "Sign up" si va declansa deschiderea celui de al doilea modal, pentru completarea datelor personale.</p>
+        <p>Prima pagina a aplicatie contine meniul format din logo, referinta catre sectiunea "About Us", referinta catre sectiunea "Contact" si un buton de logare. Daca un utilizator nu are cont, acesta poate accesa butonul de “Login” si va declansa deschiderea modalului de logare, dupa care va apasa butonul de "Sign up" si va declansa deschiderea celui de al doilea modal, pentru completarea datelor personale.</p>
         <p>Dupa logarea cu succes, utilizatorul va fi directionat pe o pagina unde va avea acces la informatii personalizate. Meniul acestei pagini contine in plus sectiunea "My Favorites", ce permite accesarea a doua butoane, Add New Preferences si My Prefered News. Pentru a realiza acest lucru, am folosit functionalitatea oferita de framework-ul Laravel: @if (Auth::check()) {...} @else {...} @endif.
         </p>
-        <!-- <p>In plus fata de prima pagina a aplicatiei, exista si un field "Search" pentru cautarea anumitor stiri.
-        </p> -->
         <p>Daca un utilizator doreste sa acceseze o stire din cele prezentate pe aceasta pagina, acesta va fi directionat pe o pagina ce va contine stirea in intregime.
         </p>
+		<p>Aplicatia contine si un camp de "Search" care ofera posibilitatea utilizatorului de a cauta un video dupa preferintele lui.
+        </p> 
       </section>
 	<!--   <section>
 		<h2>Arhitectura aplicatiei</h2><br>
 		<img src="diagrama.png" alt="diagram">
 	  </section> -->
-
 	  <section>
 		<p>
 		In aplicatia noastra, vom folosi pentru implementare, framework-ul Laravel. Am ales acest framework deoarece ne ofera o documentatie oficiala foarte bogata si cel mai important, deoarece ne permite sa implementam aplicatia dupa modelul arhitectural MVC.
@@ -137,7 +132,7 @@ Pentru a putea colecta video-uri de pe Vimeo si a le introduce in baza de date, 
       
 		 
 		</ul>
-		
+		Aceste video-uri vor fi introduse in baza de date prin apelul “'/secret/getSlideShare/{tag} '” care apeleaza functia getSlideShare($tag) din VideoController ce parseaza un XML si formeaza un array cu informatiile resprective.
 		<p>
 		In aplicatia noastra vom include si API-ul oferit de Youtube pentru incarcarea clipurilor video, a canalelor existente pe aceasta platforma si a play-listurilor,daca exista, precum si pentru cautarea acestora.
 		<br>
@@ -159,14 +154,18 @@ Pentru a putea colecta video-uri de pe Vimeo si a le introduce in baza de date, 
 		-pageToken: specifica o anumita pagina ce trebuie returnata
 			
 		</p>
-		  </p>
-		  
+		</p>
 		Aplicatia noastra ofera posibilitatea de a colecta informatii de pe pagina prin intermediul API REST.
 		Oferim un URL unic pentru fiecare utilizator de forma http://localhost/apis/api_key ,  unde api_key este un string generat random cu functia generateRandomString($length = 10), acesta fiind format dintr-o combinatie de 10 litere si cifre. 
 		Acest URL genereaza un document in format .json si contine toate video-urile din baza noastra de date. Acest lucru se realizeaza cu functia getJsonVideo(Request $request, $key). Utilizatorul are posibilitatea de a parsa acest document si de a extrage pe baza tag-urilor video-urile de care este interesat.
+		</p>
+		<p>Deasemenea oferim o cautare a infomatiilor dupa nume, in campul Search, aplelandu-se functiei search() din PageController. Aceasta functie foloseste metoda $_GET pentru a prelua numele dupa care utilizatorul realizeaza cautarea.
+		</p>
       </section>
-
      <section>
+	 <h2>
+	  	Baza de date
+	  	</h2>
      <p> Pentru stocarea datelor in cadrul aplicatiei vom folosi ca suport sistemul de gestiune MySQL incorporate in cadrul aplicatiei phpMyAdmin. Acest sistem de gestiune contine extensia MySQLi, ce impreuna cu PHP 5, ofera o serie de functii ce ajuta la accesarea facila bazelor de date. </p>
      <p>Baza de date va stoca date precum: datele de inregistrare a administratorilor, ale utilizatorilor aplicatiei si date optionale, alese de utilizatori la inregistrarea in aplicatie. Aceste date vor fi retinute intr-o tabela <i>Users</i>, ce va contine campuri precum : id ( cheie unica asignat automat fiecarui utilizator), nume, email si parola ( date ce sunt completate de utilizator la inregistrarea in aplicatie).</p>
      <p>De asemenea, intr-o alta tabela <i>Preferinte</i> vor fi retinute preferintele care pot fi alese de fiecare utilizator la inregistrarea in aplicatie. Aceasta a doua tabela va retine numele domeniilor impreuna cu id-ul utilizatorului care l-a ales(cheie straina din tabela Users) . Astfel un utilizator isi va putea accesa cu usurinta lista cu preferinte alese si va mai putea adauga si altele.</p>
@@ -183,8 +182,8 @@ Pentru a putea colecta video-uri de pe Vimeo si a le introduce in baza de date, 
       <section>
         <h2>Membrii echipei</h2>
         <p><b>Ana Cretu</b> s-a ocupat de obtinerea video-urilor de pe API-ul oferit de YouTube si de sistemul de logare.</p>
-        <p><b>Diana Gusa</b> s-a ocupat de sistemul de gestionare a preferintelor a unui utilizator si de crearea API-ului REST.</p>
-        <p><b>Madalina Iacob</b> s-a ocupat de crearea sectiunii de search si de obtinerea video-urilor de pe API-ul oferit de Slideshare.</p>
+        <p><b>Diana Gusa</b> s-a ocupat de crearea sectiunii de search si de crearea API-ului REST.</p>
+        <p><b>Madalina Iacob</b> s-a ocupat de sistemul de gestionare a preferintelor a unui utilizator si de obtinerea video-urilor de pe API-ul oferit de Slideshare.</p>
         <p><b>Georgiana Lingurariu</b> s-a ocupat de structura interfetei aplicatiei si de obtinerea video-urilor de pe API-ul oferit de Vimeo.</p>
       </section>
 	
