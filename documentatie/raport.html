@@ -134,11 +134,11 @@ Pentru a putea colecta video-uri de pe Vimeo si a le introduce in baza de date, 
 		</ul>
 		Aceste video-uri vor fi introduse in baza de date prin apelul “'/secret/getSlideShare/{tag} '” care apeleaza functia getSlideShare($tag) din VideoController ce parseaza un XML si formeaza un array cu informatiile resprective.
 		<p>
-		In aplicatia noastra vom include si API-ul oferit de Youtube pentru incarcarea clipurilor video, a canalelor existente pe aceasta platforma si a play-listurilor,daca exista, precum si pentru cautarea acestora.
-		<br>
-		Am realizat o cerere catre Google pentru a ne ofera cheia pentru API-ul Youtube. Apoi vom face o cerere HTTP, apeland GET la URL-ul <a href="https://www.googleapis.com/youtube/v3/videos">https://www.googleapis.com/youtube/v3/videos</a> pentru a obtine video-uri. La fel si pentru celelalte elemente care le dorim extrase de pe Youtube.  
-		<br>
-		<b>Parametri necesari</b><br>
+		In aplicatia noastra vom include si API-ul oferit de Youtube pentru incarcarea clipurilor video.
+		URL: <a href="https://www.googleapis.com/youtube/v3/videos">https://www.googleapis.com/youtube/v3/videos</a>
+		De asemenea ne-am folosit de functionalitatile unui adaptor pentru Youtube API, pentru a prelua video-urile dupa tagurile acestora.<br> 
+		Pentru a colecta video-uri de pe Youtube si a le introduce in baza de date, am apelat '/secret/getYoutubeVideo/{tag}' care va accesa functia VideoYoutube().Aceasta se folosete de o functie searchVideos($tag) din adaptorul mentionat mai sus, creaza un array de obiecte, pe care mai apoi il parseaza si introduce in baza de date informatiile dorite: name,description,uri,embed,tags.
+		<b>Parametri necesari(functiile adaptorului):</b><br>
 		-part: returneaza o lista cu proprietatile resursei video, separate prin virgula. 
 		<br>
 		-regionCode: returneaza rezultatele in functie de tara 
